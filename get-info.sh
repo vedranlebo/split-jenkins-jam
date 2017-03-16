@@ -9,5 +9,6 @@ for inst in `aws ec2 describe-instances  | grep 'InstanceId' | awk '{print $2 }'
 	echo "Instancte Size: $(cat ${inst}.json | jq -c '.Reservations[0].Instances[0].InstanceType ')"
 	echo "VPC: $(cat ${inst}.json | jq -c '.Reservations[0].Instances[0].VpcId ')"
 	echo "Private IP: $(cat ${inst}.json | jq -c '.Reservations[0].Instances[0].PrivateIpAddress')"
+	echo "Public IP: $(cat ${inst}.json | jq -c '.Reservations[0].Instances[0].PublicIpAddress')"
 	rm ${inst}.json
 done
